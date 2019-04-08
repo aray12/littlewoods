@@ -1,0 +1,20 @@
+{
+  "name": "littlewoods",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Alex Ray <alex.ray12@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "firebase": "^5.8.6",
+    "lodash": "^4.17.11",
+    "next": "^8.0.3",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-flip-toolkit": "^6.5.7"
+  }
+}
