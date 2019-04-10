@@ -27,29 +27,33 @@ const Tournament = () => {
       <Flipper flipKey={tournament.map(({ playerId }) => playerId).join('-')}>
         <table>
           <thead>
-            <th>Pos</th>
-            <th>Name</th>
-            <th>Total</th>
-            <th>Thru</th>
-            <th>Round</th>
+            <tr>
+              <th>Pos</th>
+              <th>Name</th>
+              <th>Total</th>
+              <th>Thru</th>
+              <th>Round</th>
+            </tr>
           </thead>
-          {tournament.map(player => (
-            <Flipped key={player.playerId} flipId={player.playerId}>
-              <tr>
-                <td>
-                  {player.status === 'active'
-                    ? player.position
-                    : player.status.toUpperCase()}
-                </td>
-                <td>
-                  {player.firstName} {player.lastName}
-                </td>
-                <td>{player.total}</td>
-                <td>{player.thru}</td>
-                <td>{player.round}</td>
-              </tr>
-            </Flipped>
-          ))}
+          <tbody>
+            {tournament.map(player => (
+              <Flipped key={player.playerId} flipId={player.playerId}>
+                <tr>
+                  <td>
+                    {player.status === 'active'
+                      ? player.position
+                      : player.status.toUpperCase()}
+                  </td>
+                  <td>
+                    {player.firstName} {player.lastName}
+                  </td>
+                  <td>{player.total}</td>
+                  <td>{player.thru}</td>
+                  <td>{player.round}</td>
+                </tr>
+              </Flipped>
+            ))}
+          </tbody>
         </table>
       </Flipper>
     </Layout>
