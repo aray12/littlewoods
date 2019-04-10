@@ -1,8 +1,11 @@
+import Leaderboard from '../components/Leaderboard/Leaderboard.js';
 import Layout from '../components/Layout/Layout.js';
 
 const Index = () => {
   return (
-    <Layout>This will be our an overall leaderboard and team boards</Layout>
+    <Layout>
+      <Leaderboard />
+    </Layout>
   );
 };
 
