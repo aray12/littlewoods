@@ -49,7 +49,7 @@ const populateLeaderboard = teams =>
         name,
         total: _.get(team, 'players', [])
           .map(player => player.rawScore + player.bonus)
-          .sort((a, b) => b - a)
+          .sort((a, b) => a - b)
           .filter((score, index) => index < 4)
           .reduce((accum, score) => accum + score, missedCutBonus),
       };
