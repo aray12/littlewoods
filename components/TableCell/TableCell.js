@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 const TableCell = withStyles(theme => ({
   cell: {
     [theme.breakpoints.down('xs')]: {
-      padding: '4px 1px 4px 1px',
+      padding: '4px 10px 4px 10px',
     },
   },
 }))(({ classes, ...props }) => (

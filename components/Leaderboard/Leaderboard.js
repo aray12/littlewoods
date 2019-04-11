@@ -40,7 +40,7 @@ const Leaderboard = ({ classes }) => {
           Leaderboard
         </Typography>
         <Flipper flipKey={state.leaderboard.map(({ name }) => name).join('-')}>
-          <Table padding="dense">
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell align="center">Pos</TableCell>
@@ -67,7 +67,7 @@ const Leaderboard = ({ classes }) => {
       <Divider className={classes.divider} />
       <Grid container spacing={24}>
         {Object.entries(state.teams).map(([name, team]) => (
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} lg={6}>
             <Paper className={classes.paper}>
               <Team name={name} team={team} />
             </Paper>
