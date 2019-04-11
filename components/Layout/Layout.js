@@ -1,256 +1,193 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import Head from 'next/head';
+import Link from 'next/link';
 
-import Nav from './Nav.js';
+import cx from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ChartIcon from '@material-ui/icons/BarChartOutlined';
+import ListIcon from '@material-ui/icons/ListAltOutlined';
 
-const Layout = ({ children }) => {
-  return (
-    <div>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charSet="utf-8" />
-      </Head>
-      <Nav />
+const drawerWidth = 240;
 
-      {children}
-      <style jsx global>{`
-        /* $color-text: #dedce5; */
-        /* Sakura.css v1.0.0
-       * ================
-       * Minimal css theme.
-       * Project: https://github.com/oxalorg/sakura
-       */
-        /* Body */
-        html {
-          font-size: 62.5%;
-          font-family: serif;
-        }
+const styles = theme => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    backgroundColor: '#006747',
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginLeft: 12,
+    marginRight: 20,
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.unit * 3,
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
+  },
+});
 
-        body {
-          font-size: 1.8rem;
-          line-height: 1.618;
-          max-width: 38em;
-          margin: auto;
-          color: #c9c9c9;
-          background-color: #222222;
-          padding: 13px;
-        }
+class Layout extends React.Component {
+  state = {
+    open: false,
+  };
 
-        @media (max-width: 684px) {
-          body {
-            font-size: 1.53rem;
-          }
-        }
+  handleDrawerOpen = () => {
+    this.setState({ open: true });
+  };
 
-        @media (max-width: 382px) {
-          body {
-            font-size: 1.35rem;
-          }
-        }
+  handleDrawerClose = () => {
+    this.setState({ open: false });
+  };
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-          line-height: 1.1;
-          font-family: Verdana, Geneva, sans-serif;
-          font-weight: 700;
-          overflow-wrap: break-word;
-          word-wrap: break-word;
-          -ms-word-break: break-all;
-          word-break: break-word;
-          -ms-hyphens: auto;
-          -moz-hyphens: auto;
-          -webkit-hyphens: auto;
-          hyphens: auto;
-        }
+  render() {
+    const { children, classes, theme } = this.props;
+    const { open } = this.state;
 
-        h1 {
-          font-size: 2.35em;
-        }
+    return (
+      <div className={classes.root}>
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          />
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+          />
+          <meta charSet="utf-8" />
+        </Head>
+        <CssBaseline />
 
-        h2 {
-          font-size: 2em;
-        }
+        <AppBar
+          position="fixed"
+          className={cx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar disableGutters={!open}>
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={this.handleDrawerOpen}
+              className={cx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" color="inherit" noWrap>
+              2019 Masters
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={this.handleDrawerClose}>
+              {theme.direction === 'ltr' ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            {[
+              ['LEADERBOARD', '/', <ChartIcon />],
+              ['TOURNAMENT', '/tournament', <ListIcon />],
+            ].map(([text, href, icon], index) => (
+              <Link href={href}>
+                <ListItem button key={text}>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+        </Drawer>
+        <main
+          className={cx(classes.content, {
+            [classes.contentShift]: open,
+          })}
+        >
+          <div className={classes.drawerHeader} />
+          {children}
+        </main>
+      </div>
+    );
+  }
+}
 
-        h3 {
-          font-size: 1.75em;
-        }
-
-        h4 {
-          font-size: 1.5em;
-        }
-
-        h5 {
-          font-size: 1.25em;
-        }
-
-        h6 {
-          font-size: 1em;
-        }
-
-        small,
-        sub,
-        sup {
-          font-size: 75%;
-        }
-
-        hr {
-          border-color: #ffffff;
-        }
-
-        a {
-          text-decoration: none;
-          color: #ffffff;
-        }
-        a:hover {
-          color: #c9c9c9;
-          border-bottom: 2px solid #c9c9c9;
-        }
-
-        ul {
-          padding-left: 1.4em;
-        }
-
-        li {
-          margin-bottom: 0.4em;
-        }
-
-        blockquote {
-          font-style: italic;
-          margin-left: 1.5em;
-          padding-left: 1em;
-          border-left: 3px solid #ffffff;
-        }
-
-        img {
-          max-width: 100%;
-        }
-
-        /* Pre and Code */
-        pre {
-          background-color: #4a4a4a;
-          display: block;
-          padding: 1em;
-          overflow-x: auto;
-        }
-
-        code {
-          font-size: 0.9em;
-          padding: 0 0.5em;
-          background-color: #4a4a4a;
-          white-space: pre-wrap;
-        }
-
-        pre > code {
-          padding: 0;
-          background-color: transparent;
-          white-space: pre;
-        }
-
-        /* Tables */
-        table {
-          text-align: justify;
-          width: 100%;
-          border-collapse: collapse;
-        }
-
-        td,
-        th {
-          padding: 0.5em;
-          border-bottom: 1px solid #4a4a4a;
-        }
-
-        /* Buttons, forms and input */
-        input,
-        textarea {
-          border: 1px solid #c9c9c9;
-        }
-        input:focus,
-        textarea:focus {
-          border: 1px solid #ffffff;
-        }
-
-        textarea {
-          width: 100%;
-        }
-
-        .button,
-        button,
-        input[type='submit'],
-        input[type='reset'],
-        input[type='button'] {
-          display: inline-block;
-          padding: 5px 10px;
-          text-align: center;
-          text-decoration: none;
-          white-space: nowrap;
-          background-color: #ffffff;
-          color: #222222;
-          border-radius: 1px;
-          border: 1px solid #ffffff;
-          cursor: pointer;
-          box-sizing: border-box;
-        }
-        .button[disabled],
-        button[disabled],
-        input[type='submit'][disabled],
-        input[type='reset'][disabled],
-        input[type='button'][disabled] {
-          cursor: default;
-          opacity: 0.5;
-        }
-        .button:focus,
-        .button:hover,
-        button:focus,
-        button:hover,
-        input[type='submit']:focus,
-        input[type='submit']:hover,
-        input[type='reset']:focus,
-        input[type='reset']:hover,
-        input[type='button']:focus,
-        input[type='button']:hover {
-          background-color: #c9c9c9;
-          border-color: #c9c9c9;
-          color: #222222;
-          outline: 0;
-        }
-
-        textarea,
-        select,
-        input[type] {
-          color: #c9c9c9;
-          padding: 6px 10px;
-          /* The 6px vertically centers text on FF, ignored by Webkit */
-          margin-bottom: 10px;
-          background-color: #4a4a4a;
-          border: 1px solid #4a4a4a;
-          border-radius: 4px;
-          box-shadow: none;
-          box-sizing: border-box;
-        }
-        textarea:focus,
-        select:focus,
-        input[type]:focus {
-          border: 1px solid #ffffff;
-          outline: 0;
-        }
-
-        input[type='checkbox']:focus {
-          outline: 1px dotted #ffffff;
-        }
-
-        label,
-        legend,
-        fieldset {
-          display: block;
-          margin-bottom: 0.5rem;
-          font-weight: 600;
-        }
-      `}</style>
-    </div>
-  );
+Layout.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
 };
 
-export default Layout;
+export default withStyles(styles, { withTheme: true })(Layout);
