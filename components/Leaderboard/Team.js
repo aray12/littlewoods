@@ -48,10 +48,11 @@ const Team = ({ name, team }) => {
             </TableCell>
             <TableCell align="right">
               <strong>
-                {_.get(team, 'players', []).reduce(
-                  (accum, player) => accum + player.rawScore + player.bonus,
-                  missedCutBonus
-                )}
+                {_.get(team, 'players', [])
+                  .map(player => player.rawScore + player.bonus)
+                  .sort((a, b) => b - a)
+                  .filter((score, index) => index < 4)
+                  .reduce((accum, score) => accum + score, missedCutBonus)}
               </strong>
             </TableCell>
           </TableRow>

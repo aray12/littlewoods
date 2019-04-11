@@ -47,10 +47,11 @@ const populateLeaderboard = teams =>
       return {
         ...team,
         name,
-        total: _.get(team, 'players', []).reduce(
-          (accum, player) => accum + player.rawScore + player.bonus,
-          missedCutBonus
-        ),
+        total: _.get(team, 'players', [])
+          .map(player => player.rawScore + player.bonus)
+          .sort((a, b) => b - a)
+          .filter((score, index) => index < 4)
+          .reduce((accum, score) => accum + score, missedCutBonus),
       };
     }),
     ['total'],
@@ -100,7 +101,10 @@ const reducer = (state, action) => {
 
     case 'TOURNAMENT_UPDATE':
       teams = _.mapValues(state.teams, team =>
-        populateTeam(action.payload, team.players.map(({ playerId }) => playerId))
+        populateTeam(
+          action.payload,
+          team.players.map(({ playerId }) => playerId)
+        )
       );
       return {
         teams,
