@@ -3,9 +3,10 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+
+import TableCell from '../TableCell/TableCell.js';
 
 const Team = ({ name, team }) => {
   const missedCutBonus =
@@ -18,7 +19,7 @@ const Team = ({ name, team }) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Player</TableCell>
+            <TableCell align="center">Player</TableCell>
             <TableCell align="right">Pos</TableCell>
             <TableCell align="right">Bonus</TableCell>
             <TableCell align="right">Total</TableCell>
@@ -27,7 +28,7 @@ const Team = ({ name, team }) => {
         <TableBody>
           {_.get(team, 'players', []).map(player => (
             <TableRow>
-              <TableCell>
+              <TableCell align="center">
                 {player.firstName} {player.lastName}
               </TableCell>
               <TableCell align="right">{player.position}</TableCell>
@@ -58,6 +59,12 @@ const Team = ({ name, team }) => {
           </TableRow>
         </TableBody>
       </Table>
+      <style jsx>{`
+        th,
+        td {
+          padding: 4px 24px 4px 12px;
+        }
+      `}</style>
     </div>
   );
 };

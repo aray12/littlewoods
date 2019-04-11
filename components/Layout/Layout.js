@@ -67,7 +67,7 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -113,7 +113,7 @@ class Layout extends React.Component {
           />
           <meta
             name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=yes"
           />
           <meta charSet="utf-8" />
         </Head>

@@ -9,9 +9,10 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+
+import TableCell from '../TableCell/TableCell.js';
 
 import Team from './Team.js';
 
@@ -39,19 +40,21 @@ const Leaderboard = ({ classes }) => {
           Leaderboard
         </Typography>
         <Flipper flipKey={state.leaderboard.map(({ name }) => name).join('-')}>
-          <Table>
+          <Table padding="dense">
             <TableHead>
               <TableRow>
-                <TableCell>Pos</TableCell>
+                <TableCell align="center">Pos</TableCell>
                 <TableCell>Team</TableCell>
-                <TableCell align="right">Score</TableCell>
+                <TableCell align="right" className="testinggggggg">
+                  Score
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {state.leaderboard.map(team => (
                 <Flipped key={team.name} flipId={team.name}>
                   <TableRow>
-                    <TableCell>{team.position}</TableCell>
+                    <TableCell align="center">{team.position}</TableCell>
                     <TableCell>{team.name}</TableCell>
                     <TableCell align="right">{team.total}</TableCell>
                   </TableRow>
