@@ -1,42 +1,82 @@
+import PropTypes from 'prop-types';
+import cx from 'classnames';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 import _ from 'lodash';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 import Team from './Team.js';
 
 import useRoster from './useRoster.js';
 
-const Leaderboard = () => {
+const styles = theme => ({
+  leaderboard: {
+    maxWidth: 560,
+    margin: 'auto',
+  },
+  paper: {
+    paddingTop: theme.spacing.unit * 2,
+  },
+  divider: {
+    margin: '20px 0',
+  },
+});
+
+const Leaderboard = ({ classes }) => {
   const state = useRoster();
   return (
     <React.Fragment>
-      <h2>Leaderboard</h2>
-      <Flipper flipKey={state.leaderboard.map(({ name }) => name).join('-')}>
-        <table>
-          <thead>
-            <tr>
-              <th>Pos</th>
-              <th>Team</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {state.leaderboard.map(team => (
-              <Flipped key={team.name} flipId={team.name}>
-                <tr>
-                  <td>{team.position}</td>
-                  <td>{team.name}</td>
-                  <td>{team.total}</td>
-                </tr>
-              </Flipped>
-            ))}
-          </tbody>
-        </table>
-      </Flipper>
-      {Object.entries(state.teams).map(([name, team]) => (
-        <Team name={name} team={team} />
-      ))}
+      <Paper className={cx(classes.leaderboard, classes.paper)}>
+        <Typography variant="h3" align="center" gutterBottom>
+          Leaderboard
+        </Typography>
+        <Flipper flipKey={state.leaderboard.map(({ name }) => name).join('-')}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Pos</TableCell>
+                <TableCell>Team</TableCell>
+                <TableCell>Score</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {state.leaderboard.map(team => (
+                <Flipped key={team.name} flipId={team.name}>
+                  <TableRow>
+                    <TableCell>{team.position}</TableCell>
+                    <TableCell>{team.name}</TableCell>
+                    <TableCell>{team.total}</TableCell>
+                  </TableRow>
+                </Flipped>
+              ))}
+            </TableBody>
+          </Table>
+        </Flipper>
+      </Paper>
+      <Divider className={classes.divider} />
+      <Grid container spacing={24}>
+        {Object.entries(state.teams).map(([name, team]) => (
+          <Grid item xs={12} md={6}>
+            <Paper className={classes.paper}>
+              <Team name={name} team={team} />
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
     </React.Fragment>
   );
 };
 
-export default Leaderboard;
+Leaderboard.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Leaderboard);
