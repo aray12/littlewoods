@@ -44,7 +44,7 @@ const Leaderboard = ({ classes }) => {
               <TableRow>
                 <TableCell>Pos</TableCell>
                 <TableCell>Team</TableCell>
-                <TableCell>Score</TableCell>
+                <TableCell align="right">Score</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -53,7 +53,7 @@ const Leaderboard = ({ classes }) => {
                   <TableRow>
                     <TableCell>{team.position}</TableCell>
                     <TableCell>{team.name}</TableCell>
-                    <TableCell>{team.total}</TableCell>
+                    <TableCell align="right">{team.total}</TableCell>
                   </TableRow>
                 </Flipped>
               ))}
