@@ -100,7 +100,7 @@ const reducer = (state, action) => {
 
     case 'TOURNAMENT_UPDATE':
       teams = _.mapValues(state.teams, team =>
-        populateTeam(action.payload, Object.keys(team.players))
+        populateTeam(action.payload, team.players.map(({ playerId }) => playerId))
       );
       return {
         teams,
