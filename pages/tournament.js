@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 import _ from 'lodash';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 import Layout from '../components/Layout/Layout.js';
 import firebase from '../api/firebase.js';
@@ -24,38 +33,40 @@ const Tournament = () => {
   }, []);
   return (
     <Layout>
-      <Flipper flipKey={tournament.map(({ playerId }) => playerId).join('-')}>
-        <table>
-          <thead>
-            <tr>
-              <th>Pos</th>
-              <th>Name</th>
-              <th>Total</th>
-              <th>Thru</th>
-              <th>Round</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tournament.map(player => (
-              <Flipped key={player.playerId} flipId={player.playerId}>
-                <tr>
-                  <td>
-                    {player.status === 'active'
-                      ? player.position
-                      : player.status.toUpperCase()}
-                  </td>
-                  <td>
-                    {player.firstName} {player.lastName}
-                  </td>
-                  <td>{player.total}</td>
-                  <td>{player.thru}</td>
-                  <td>{player.round}</td>
-                </tr>
-              </Flipped>
-            ))}
-          </tbody>
-        </table>
-      </Flipper>
+      <Paper>
+        <Flipper flipKey={tournament.map(({ playerId }) => playerId).join('-')}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Pos</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell align="right">Total</TableCell>
+                <TableCell align="right">Thru</TableCell>
+                <TableCell align="right">Round</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {tournament.map(player => (
+                <Flipped key={player.playerId} flipId={player.playerId}>
+                  <TableRow>
+                    <TableCell align="center">
+                      {player.status === 'active'
+                        ? player.position
+                        : player.status.toUpperCase()}
+                    </TableCell>
+                    <TableCell>
+                      {player.firstName} {player.lastName}
+                    </TableCell>
+                    <TableCell align="right">{player.total}</TableCell>
+                    <TableCell align="right">{player.thru}</TableCell>
+                    <TableCell align="right">{player.round}</TableCell>
+                  </TableRow>
+                </Flipped>
+              ))}
+            </TableBody>
+          </Table>
+        </Flipper>
+      </Paper>
     </Layout>
   );
 };
