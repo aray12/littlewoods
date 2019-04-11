@@ -134,6 +134,11 @@ class Layout extends React.Component {
             >
               <MenuIcon />
             </IconButton>
+            <img
+              src="/static/logo.png"
+              alt="Logo"
+              style={{ width: 36, marginTop: -8, marginRight: 10 }}
+            />
             <Typography variant="h6" color="inherit" noWrap>
               2019 Masters
             </Typography>
