@@ -30,7 +30,16 @@ const Team = ({ name, team }) => {
           {_.get(team, 'players', []).map(player => (
             <TableRow>
               <TableCell align="center">
-                {player.firstName} {player.lastName}
+                <a
+                  href={`https://www.pgatour.com/players/player.${
+                    player.playerId
+                  }.${_.kebabCase(
+                    [player.firstName, player.lastName].join(' ')
+                  )}.html/scorecards/r014`}
+                  target="_blank"
+                >
+                  {player.firstName} {player.lastName}
+                </a>
               </TableCell>
               <TableCell align="right">
                 {player.total === '0' ? 'E' : player.total}
@@ -44,9 +53,7 @@ const Team = ({ name, team }) => {
           ))}
           <TableRow>
             <TableCell rowSpan="2" />
-            <TableCell colSpan="3">
-              Missed Cut Bonus
-            </TableCell>
+            <TableCell colSpan="3">Missed Cut Bonus</TableCell>
             <TableCell align="right">{missedCutBonus}</TableCell>
           </TableRow>
           <TableRow>
