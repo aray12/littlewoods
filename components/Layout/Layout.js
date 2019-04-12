@@ -22,6 +22,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ChartIcon from '@material-ui/icons/BarChartOutlined';
 import ListIcon from '@material-ui/icons/ListAltOutlined';
+import ScoringIcon from '@material-ui/icons/InfoOutlined';
 
 const drawerWidth = 240;
 
@@ -167,6 +168,7 @@ class Layout extends React.Component {
             {[
               ['LEADERBOARD', '/', <ChartIcon />],
               ['TOURNAMENT', '/tournament', <ListIcon />],
+              ['SCORING', '/scoring', <ScoringIcon />],
             ].map(([text, href, icon], index) => (
               <Link href={href}>
                 <ListItem button key={text}>
