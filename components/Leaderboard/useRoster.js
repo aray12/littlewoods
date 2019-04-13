@@ -3,18 +3,21 @@ import _ from 'lodash';
 
 import firebase from '../../api/firebase.js';
 
-const getRawScore = pos => {
-  if (!pos || pos === '--') {
+const getRawScore = player => {
+  if (player.status !== 'active') {
+    return 66;
+  }
+  if (!player.position || player.position === '--') {
     return 0;
   }
-  return _.toNumber(_.trimStart(pos, 'T'));
+  return _.toNumber(_.trimStart(player.position, 'T'));
 };
 
 const populateTeam = (tournament, team) => {
   return team.reduce(
     (accum, playerId) => {
       const player = _.get(tournament, playerId, {});
-      const rawScore = getRawScore(player.position);
+      const rawScore = getRawScore(player);
       let bonus = 0;
 
       if (rawScore !== 0) {
@@ -29,7 +32,7 @@ const populateTeam = (tournament, team) => {
 
       accum.players.push({ ...player, rawScore, bonus });
 
-      if (player.status == 'mc') {
+      if (player.status !== 'active') {
         accum.missedCuts++;
       }
 
