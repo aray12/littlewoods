@@ -44,7 +44,11 @@ const Team = ({ name, team }) => {
               <TableCell align="right">
                 {player.total === '0' ? 'E' : player.total}
               </TableCell>
-              <TableCell align="right">{player.position}</TableCell>
+              <TableCell align="right">
+                {player.status === 'active'
+                  ? player.position
+                  : player.status.toUpperCase()}
+              </TableCell>
               <TableCell align="right">{player.bonus}</TableCell>
               <TableCell align="right">
                 {player.rawScore + player.bonus}
@@ -53,7 +57,7 @@ const Team = ({ name, team }) => {
           ))}
           <TableRow>
             <TableCell rowSpan="2" />
-            <TableCell colSpan="3">Missed Cut Bonus</TableCell>
+            <TableCell colSpan="3">Made Cut Bonus</TableCell>
             <TableCell align="right">{missedCutBonus}</TableCell>
           </TableRow>
           <TableRow>
