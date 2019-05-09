@@ -1,46 +1,46 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react"
+import PropTypes from "prop-types"
 
-import Head from 'next/head';
-import Link from 'next/link';
+import { Link } from "gatsby"
+import { Helmet } from "react-helmet";
 
-import cx from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ChartIcon from '@material-ui/icons/BarChartOutlined';
-import ListIcon from '@material-ui/icons/ListAltOutlined';
-import ScoringIcon from '@material-ui/icons/InfoOutlined';
+import cx from "classnames"
+import { withStyles } from "@material-ui/core/styles"
+import Drawer from "@material-ui/core/Drawer"
+import CssBaseline from "@material-ui/core/CssBaseline"
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import List from "@material-ui/core/List"
+import Typography from "@material-ui/core/Typography"
+import Divider from "@material-ui/core/Divider"
+import IconButton from "@material-ui/core/IconButton"
+import MenuIcon from "@material-ui/icons/Menu"
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
+import ChevronRightIcon from "@material-ui/icons/ChevronRight"
+import ListItem from "@material-ui/core/ListItem"
+import ListItemIcon from "@material-ui/core/ListItemIcon"
+import ListItemText from "@material-ui/core/ListItemText"
+import ChartIcon from "@material-ui/icons/BarChartOutlined"
+import ListIcon from "@material-ui/icons/ListAltOutlined"
+import ScoringIcon from "@material-ui/icons/InfoOutlined"
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
 const styles = theme => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    backgroundColor: '#006747',
+    backgroundColor: "#006747",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
+    transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -50,7 +50,7 @@ const styles = theme => ({
     marginRight: 20,
   },
   hide: {
-    display: 'none',
+    display: "none",
   },
   drawer: {
     width: drawerWidth,
@@ -60,50 +60,50 @@ const styles = theme => ({
     width: drawerWidth,
   },
   drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '0 8px',
+    display: "flex",
+    alignItems: "center",
+    padding: "0 8px",
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: "flex-end",
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing.unit,
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
   },
   contentShift: {
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
   },
-});
+})
 
 class Layout extends React.Component {
   state = {
     open: false,
-  };
+  }
 
   handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
+    this.setState({ open: true })
+  }
 
   handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
+    this.setState({ open: false })
+  }
 
   render() {
-    const { children, classes, theme } = this.props;
-    const { open } = this.state;
+    const { children, classes, theme } = this.props
+    const { open } = this.state
 
     return (
       <div className={classes.root}>
-        <Head>
+        <Helmet>
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
@@ -117,7 +117,7 @@ class Layout extends React.Component {
             content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=yes"
           />
           <meta charSet="utf-8" />
-        </Head>
+        </Helmet>
         <CssBaseline />
 
         <AppBar
@@ -156,7 +156,7 @@ class Layout extends React.Component {
         >
           <div className={classes.drawerHeader}>
             <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'ltr' ? (
+              {theme.direction === "ltr" ? (
                 <ChevronLeftIcon />
               ) : (
                 <ChevronRightIcon />
@@ -166,11 +166,11 @@ class Layout extends React.Component {
           <Divider />
           <List>
             {[
-              ['LEADERBOARD', '/', <ChartIcon />],
-              ['TOURNAMENT', '/tournament', <ListIcon />],
-              ['SCORING', '/scoring', <ScoringIcon />],
-            ].map(([text, href, icon], index) => (
-              <Link href={href}>
+              ["LEADERBOARD", "/", <ChartIcon />],
+              ["TOURNAMENT", "/tournament", <ListIcon />],
+              ["SCORING", "/scoring", <ScoringIcon />],
+            ].map(([text, to, icon], index) => (
+              <Link to={to}>
                 <ListItem button key={text}>
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText primary={text} />
@@ -188,13 +188,13 @@ class Layout extends React.Component {
           {children}
         </main>
       </div>
-    );
+    )
   }
 }
 
 Layout.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles, { withTheme: true })(Layout);
+export default withStyles(styles, { withTheme: true })(Layout)

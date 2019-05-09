@@ -1,7 +1,7 @@
+import React from "react";
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Flipper, Flipped } from 'react-flip-toolkit';
-import _ from 'lodash';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';

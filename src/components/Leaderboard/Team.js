@@ -1,12 +1,12 @@
-import _ from 'lodash';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import React from "react";
+import _ from "lodash";
+import Typography from "@material-ui/core/Typography";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 
-import TableCell from '../TableCell/TableCell.js';
+import TableCell from "../TableCell/TableCell.js";
 
 const Team = ({ name, team }) => {
   const missedCutBonus =
@@ -27,25 +27,26 @@ const Team = ({ name, team }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {_.get(team, 'players', []).map(player => (
+          {_.get(team, "players", []).map(player => (
             <TableRow>
               <TableCell align="center">
                 <a
                   href={`https://www.pgatour.com/players/player.${
                     player.playerId
                   }.${_.kebabCase(
-                    [player.firstName, player.lastName].join(' ')
+                    [player.firstName, player.lastName].join(" ")
                   )}.html/scorecards/r014`}
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {player.firstName} {player.lastName}
                 </a>
               </TableCell>
               <TableCell align="right">
-                {player.total === '0' ? 'E' : player.total}
+                {player.total === "0" ? "E" : player.total}
               </TableCell>
               <TableCell align="right">
-                {player.status === 'active'
+                {player.status === "active"
                   ? player.position
                   : player.status.toUpperCase()}
               </TableCell>
@@ -66,7 +67,7 @@ const Team = ({ name, team }) => {
             </TableCell>
             <TableCell align="right">
               <strong>
-                {_.get(team, 'players', [])
+                {_.get(team, "players", [])
                   .map(player => player.rawScore + player.bonus)
                   .sort((a, b) => a - b)
                   .filter((score, index) => index < 4)

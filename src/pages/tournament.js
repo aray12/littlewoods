@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 import _ from 'lodash';
-import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableHead from '@material-ui/core/TableHead';

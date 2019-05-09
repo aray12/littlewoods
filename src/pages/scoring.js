@@ -1,11 +1,12 @@
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import React from "react";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
 
 import Layout from '../components/Layout/Layout.js';
 
 const styles = theme => ({
-  paper: { padding: 20, maxWidth: 560, margin: 'auto' },
+  paper: { padding: 20, maxWidth: 560, margin: "auto" },
 });
 
 const Scoring = ({ classes }) => {
