@@ -4,6 +4,7 @@ module.exports = {
     description: `A Place to Gamble on Golf with Friends`,
   },
   plugins: [
+    `gatsby-plugin-layout`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -19,7 +20,7 @@ module.exports = {
       options: {
         name: `littlewoods`,
         short_name: `littlewoods`,
-        author: 'Alex Ray',
+        author: "Alex Ray",
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
@@ -29,4 +30,4 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
   ],
-}
+};
