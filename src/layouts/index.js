@@ -26,6 +26,8 @@ import ScoringIcon from "@material-ui/icons/InfoOutlined";
 
 import logo from "../images/logo.png";
 
+import { Source, useSource } from "../components/Source";
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -91,93 +93,97 @@ const Layout = props => {
 
   const [open, setOpen] = useState(false);
 
-  return (
-    <div className={classes.root}>
-      <Helmet>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=yes"
-        />
-        <meta charSet="utf-8" />
-      </Helmet>
-      <CssBaseline />
+  const source = useSource();
 
-      <AppBar
-        position="fixed"
-        className={cx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar disableGutters={!open}>
-          <IconButton
-            color="inherit"
-            aria-label="Open drawer"
-            onClick={() => setOpen(true)}
-            className={cx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <img
-            src={logo}
-            alt="Logo"
-            style={{ width: 36, marginTop: -8, marginRight: 10 }}
+  return (
+    <Source.Provider value={source}>
+      <div className={classes.root}>
+        <Helmet>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
-          <Typography variant="h6" color="inherit" noWrap>
-            2019 Masters
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={() => setOpen(false)}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {[
-            ["LEADERBOARD", "/", <ChartIcon />],
-            ["TOURNAMENT", "/tournament", <ListIcon />],
-            ["SCORING", "/scoring", <ScoringIcon />],
-          ].map(([text, to, icon], index) => (
-            <Link to={to} onClick={() => setOpen(false)}>
-              <ListItem button key={text}>
-                <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            </Link>
-          ))}
-        </List>
-      </Drawer>
-      <main
-        className={cx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
-        {children}
-      </main>
-    </div>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          />
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=yes"
+          />
+          <meta charSet="utf-8" />
+        </Helmet>
+        <CssBaseline />
+
+        <AppBar
+          position="fixed"
+          className={cx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar disableGutters={!open}>
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={() => setOpen(true)}
+              className={cx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <img
+              src={logo}
+              alt="Logo"
+              style={{ width: 36, marginTop: -8, marginRight: 10 }}
+            />
+            <Typography variant="h6" color="inherit" noWrap>
+              2019 Masters
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={() => setOpen(false)}>
+              {theme.direction === "ltr" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            {[
+              ["LEADERBOARD", "/", <ChartIcon />],
+              ["TOURNAMENT", "/tournament", <ListIcon />],
+              ["SCORING", "/scoring", <ScoringIcon />],
+            ].map(([text, to, icon], index) => (
+              <Link to={to} onClick={() => setOpen(false)}>
+                <ListItem button key={text}>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              </Link>
+            ))}
+          </List>
+        </Drawer>
+        <main
+          className={cx(classes.content, {
+            [classes.contentShift]: open,
+          })}
+        >
+          <div className={classes.drawerHeader} />
+          {children}
+        </main>
+      </div>
+    </Source.Provider>
   );
 };
 

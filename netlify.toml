@@ -1,0 +1,8 @@
+[Settings]
+ 
+[build]
+  publish = "public/"
+
+  command = "yarn build"
+
+  functions = "src/functions/"

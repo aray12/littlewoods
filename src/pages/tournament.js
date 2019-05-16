@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Flipper, Flipped } from "react-flip-toolkit";
 import _ from "lodash";
 import Paper from "@material-ui/core/Paper";
@@ -8,29 +8,18 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
 import TableCell from "../components/TableCell/TableCell.js";
-
-import firebase from "../api/firebase.js";
-
-const populate = snap =>
-  _.flatten(
-    _.partition(Object.values(snap), p => p.status === "active").map(part =>
-      _.orderBy(part, [player => _.toNumber(player.total)], ["asc"])
-    )
-  );
+import { Source } from "../components/Source";
 
 const Tournament = () => {
-  const [tournament, setTournament] = useState([]);
-  useEffect(() => {
-    firebase
-      .database()
-      .ref("leaderboard")
-      .on("value", snapshot => {
-        setTournament(populate(snapshot.toJSON()));
-      });
-  }, []);
+  const data = useContext(Source);
+
   return (
     <Paper>
-      <Flipper flipKey={tournament.map(({ playerId }) => playerId).join("-")}>
+      <Flipper
+        flipKey={_.get(data, "rows", [])
+          .map(({ playerId }) => playerId)
+          .join("-")}
+      >
         <Table>
           <TableHead>
             <TableRow>
@@ -42,16 +31,16 @@ const Tournament = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tournament.map(player => (
+            {_.get(data, "rows", []).map(player => (
               <Flipped key={player.playerId} flipId={player.playerId}>
                 <TableRow>
                   <TableCell align="center">
                     {player.status === "active"
-                      ? player.position
+                      ? player.positionCurrent
                       : player.status.toUpperCase()}
                   </TableCell>
                   <TableCell>
-                    {player.firstName} {player.lastName}
+                    {player.playerNames.firstName} {player.playerNames.lastName}
                   </TableCell>
                   <TableCell align="right">{player.total}</TableCell>
                   <TableCell align="right">{player.thru}</TableCell>
