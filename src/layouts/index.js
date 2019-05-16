@@ -39,7 +39,7 @@ const styles = theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    backgroundColor: "#006747",
+    backgroundColor: "rgb(36, 50, 84)",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -136,7 +136,7 @@ const Layout = props => {
               style={{ width: 36, marginTop: -8, marginRight: 10 }}
             />
             <Typography variant="h6" color="inherit" noWrap>
-              2019 Masters
+              2019 PGA Championship
             </Typography>
           </Toolbar>
         </AppBar>
