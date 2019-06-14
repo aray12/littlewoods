@@ -4,147 +4,81 @@ module.exports = {
     description: `A Place to Gamble on Golf with Friends`,
     teams: [
       {
-        name: 'Mark Jelinek',
-        players: [
-          '08793',
-          '21528',
-          '31323',
-          '35296',
-          '24361',
-          '33968',
-          '28938',
-        ],
-      },
-      {
-        name: 'Danny Kahle',
-        players: [
-          '36689',
-          '34360',
-          '26329',
-          '27649',
-          '29420',
-          '10809',
-          '27408',
-        ],
-      },
-      {
-        name: 'Tommy Hendrickson',
+        name: 'Danny Z',
         players: [
           '30925',
-          '21209',
-          '29478',
-          '35891',
-          '39971',
-          '24024',
-          '20396',
-        ],
-      },
-      {
-        name: 'Alex Ray',
-        players: [
-          '28237',
-          '01810',
-          '24138',
-          '33293',
-          '48887',
-          '21961',
-          '25396',
-        ],
-      },
-      {
-        name: 'Brad Russell',
-        players: [
-          '32102',
-          '25364',
-          '25900',
-          '26499',
-          '31646',
-          '33399',
-          '34256',
-        ],
-      },
-      {
-        name: 'Matt Matera',
-        players: [
-          '46970',
+          '21528',
           '25804',
-          '29221',
-          '40026',
-          '26596',
-          '52372',
-          '27141',
-        ],
-      },
-      {
-        name: 'Dave Castellanos',
-        players: [
-          '22405',
-          '23108',
-          '26851',
-          '39546',
-          '33204',
-          '33803',
-          '26476',
-        ],
-      },
-      {
-        name: 'Tony Castellanos',
-        players: [
-          '28089',
-          '24502',
-          '27064',
-          '27349',
-          '25686',
-          '33122',
-          '39997',
-        ],
-      },
-      {
-        name: 'Lorenzo Razo',
-        players: [
-          '25198',
-          '32839',
-          '49964',
-          '40098',
-          '34363',
-          '34076',
-          '27129',
-        ],
-      },
-      {
-        name: 'John Scalmanini',
-        players: [
-          '30911',
-          '34046',
-          '30944',
-          '12716',
-          '33948',
-          '45478',
-          '45486',
-        ],
-      },
-      {
-        name: 'Ben Bowen',
-        players: [
-          '48081',
-          '35450',
-          '25818',
-          '33141',
-          '23320',
-          '27974',
-          '39977',
-        ],
-      },
-      {
-        name: 'Mike Matera',
-        players: [
-          '47959',
-          '29725',
-          '37455',
           '29974',
-          '30110',
-          '34709',
-          '30978',
+          '33293',
+          '32757',
+          '51936'
+        ],
+      },
+      {
+        name: 'Matt M',
+        players: [
+
+        ],
+      },
+      {
+        name: 'JScal',
+        players: [
+
+        ],
+      },
+      {
+        name: 'Mark J',
+        players: [
+
+        ],
+      },
+      {
+        name: 'Ben B',
+        players: [
+
+        ],
+      },
+      {
+        name: 'Danny K',
+        players: [
+
+        ],
+      },
+      {
+        name: 'ARay',
+        players: [
+
+        ],
+      },
+      {
+        name: 'Andy S',
+        players: [
+
+        ],
+      },
+      {
+        name: 'Tony C',
+        players: [
+          
+        ],
+      },
+      {
+        name: 'David C',
+        players: [
+
+        ],
+      },
+      {
+        name: 'Mike M',
+        players: [
+
+        ],
+      },
+      {
+        name: 'John M',
+        players: [
+
         ],
       },
     ],
