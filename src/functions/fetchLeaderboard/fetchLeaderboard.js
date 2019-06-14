@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 exports.handler = async function(event, context) {
   try {
     const response = await fetch(
-      'https://lbdata.pgatour.com/2019/r/033/leaderboard.json',
+      'https://lbdata.pgatour.com/2019/r/026/leaderboard.json',
       {
         headers: { Accept: 'application/json' },
       }
