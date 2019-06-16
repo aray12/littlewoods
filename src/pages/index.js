@@ -25,7 +25,7 @@ const getRawScore = player => {
   }
 
   if (player.status !== 'active') {
-    return 83;
+    return 80;
   }
 
   if (!player.positionCurrent || player.positionCurrent === '--') {
