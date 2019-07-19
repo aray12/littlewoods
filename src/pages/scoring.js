@@ -13,7 +13,7 @@ const Scoring = ({ classes }) => {
       <Typography variant="h6">Golfers</Typography>
       <Typography paragraph>
         <ul>
-          <li>Keep your best 4 golfers out of 6 (i.e. drop your worst 2)</li>
+          <li>Keep your best 4 golfers out of 7 (i.e. drop your worst 3)</li>
           <li>
             +1 point for golfer's place on the leaderboard (e.g. 15th place is
             worth +15 points)
@@ -24,8 +24,8 @@ const Scoring = ({ classes }) => {
       <Typography variant="h6">Cuts Bonus</Typography>
       <Typography paragraph>
         <ul>
-          <li>If 6/6 golfers make the cut: -10 pts</li>
-          <li>If 5/6 golfers make the cut: -5 pts</li>
+          <li>If 7/7 golfers make the cut: -10 pts</li>
+          <li>If 6/7 golfers make the cut: -5 pts</li>
         </ul>
       </Typography>
       <Typography variant="h6">Finish Bonus</Typography>
