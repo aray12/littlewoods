@@ -145,7 +145,6 @@ module.exports = {
           '27214',
         ],
       },
-
       {
         name: `Mark`,
         players: [
