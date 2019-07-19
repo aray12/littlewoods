@@ -38,7 +38,7 @@ const Team = ({ name, players, missedCuts }) => {
                         player.playerNames.firstName,
                         player.playerNames.lastName,
                       ].join(' ')
-                    )}.html/scorecards/r033`}
+                    )}.html/scorecards/r100`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
