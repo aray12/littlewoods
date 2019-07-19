@@ -136,7 +136,7 @@ const Layout = props => {
               style={{ width: 36, marginTop: -8, marginRight: 10 }}
             />
             <Typography variant="h6" color="inherit" noWrap>
-              2019 PGA Championship
+              2019 Open Championship
             </Typography>
           </Toolbar>
         </AppBar>
