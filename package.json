@@ -24,7 +24,7 @@
     "gatsby-plugin-sharp": "^2.0.36",
     "gatsby-source-filesystem": "^2.0.33",
     "gatsby-transformer-sharp": "^2.1.19",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "node-fetch": "^2.6.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
